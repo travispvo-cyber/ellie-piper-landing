@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Palette 3: Muted Rose + Neutrals | Ellie & Piper</title>
+    <title>Palette 1: Blush Pink + Gold | Ellie & Piper</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -12,19 +12,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 
-    <!-- Tailwind Config - PALETTE 3: Muted Rose + Neutrals (2025/2026 Trend) -->
+    <!-- Tailwind Config - PALETTE 1: Blush Pink + Gold -->
     <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#D58D8D",        // Muted Rose
-                        "primary-text": "#A86A6A",   // Darker Muted Rose
-                        "soft-pink": "#F4BBC9",      // Soft Blush
-                        "warm-mauve": "#EFC9D0",     // Warm Cream
-                        "charcoal": "#2A2B2A",       // Deep charcoal
-                        "luxury-white": "#F0EEE9",   // Cloud White
+                        "primary": "#EEC76A",        // Warm Gold
+                        "primary-text": "#CFA33D",   // Deep Gold
+                        "soft-pink": "#FACDDE",      // Pale Pink
+                        "warm-mauve": "#FDB8D2",     // Light Rose
+                        "charcoal": "#636363",
+                        "luxury-white": "#ffffff",
+                        "accent": "#FFA3C5",         // Soft Blush
                     },
                     fontFamily: {
                         "display": ["Newsreader", "serif"],
@@ -38,15 +39,15 @@
     <!-- Custom Styles with Palette Override -->
     <style>
         :root {
-            --gold-accent: #D58D8D;
-            --gold-text: #A86A6A;
-            --soft-blush: #F4BBC9;
-            --warm-mauve: #EFC9D0;
-            --text-dark: #2A2B2A;
-            --charcoal: #2A2B2A;
-            --white: #F0EEE9;
+            --gold-accent: #EEC76A;
+            --gold-text: #CFA33D;
+            --soft-blush: #FACDDE;
+            --warm-mauve: #FDB8D2;
+            --text-dark: #2a2a2a;
+            --charcoal: #636363;
+            --white: #ffffff;
         }
-        body { font-family: 'Newsreader', serif; background: #F0EEE9; color: #2A2B2A; }
+        body { font-family: 'Newsreader', serif; }
         .parallax-zoom { transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
         .group:hover .parallax-zoom { transform: scale(1.05); }
         #hero { display: flex; min-height: calc(100vh - 4rem); position: relative; }
@@ -55,36 +56,36 @@
         #hero > section:not(:hover) { flex-grow: 0.8; }
         #hero::after {
             content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 150px;
-            background: linear-gradient(to bottom, transparent, rgba(244,187,201,0.5) 50%, #F4BBC9);
+            background: linear-gradient(to bottom, transparent, rgba(250,205,222,0.5) 50%, #FACDDE);
             pointer-events: none; z-index: 5;
         }
         .hero-to-story-transition {
             background: linear-gradient(180deg, var(--white) 0%, var(--soft-blush) 40%, var(--soft-blush) 60%, var(--white) 100%);
         }
-        .transition-gradient { position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(180deg, rgba(240,238,233,0.9) 0%, transparent 100%); pointer-events: none; }
-        .transition-gradient-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(0deg, rgba(240,238,233,0.9) 0%, transparent 100%); pointer-events: none; }
+        .transition-gradient { position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, transparent 100%); pointer-events: none; }
+        .transition-gradient-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(0deg, rgba(255,255,255,0.9) 0%, transparent 100%); pointer-events: none; }
         .flourish-container { display: flex; justify-content: center; align-items: center; }
         .flourish-svg { width: 180px; height: 30px; color: var(--gold-accent); }
         .storybook-section {
             background: linear-gradient(180deg, var(--white) 0%, var(--soft-blush) 15%, var(--soft-blush) 85%, var(--white) 100%);
             padding: 2rem 1rem 4rem; position: relative; z-index: 10; margin-top: -40px;
         }
-        .storybook-container { max-width: 1000px; margin: 0 auto; background: var(--white); border-radius: 16px; box-shadow: 0 8px 60px rgba(42, 43, 42, 0.08); overflow: hidden; border: 1px solid rgba(213, 141, 141, 0.2); }
-        .storybook-header { background: linear-gradient(135deg, var(--warm-mauve) 0%, var(--white) 100%); padding: 1.5rem 2rem; text-align: center; border-bottom: 1px solid rgba(213, 141, 141, 0.15); }
-        .storybook-progress-bar { height: 3px; background: rgba(213, 141, 141, 0.15); position: relative; }
+        .storybook-container { max-width: 1000px; margin: 0 auto; background: var(--white); border-radius: 16px; box-shadow: 0 8px 60px rgba(0, 0, 0, 0.08); overflow: hidden; border: 1px solid rgba(200, 180, 180, 0.2); }
+        .storybook-header { background: linear-gradient(135deg, var(--soft-blush) 0%, var(--white) 100%); padding: 1.5rem 2rem; text-align: center; border-bottom: 1px solid rgba(238, 199, 106, 0.2); }
+        .storybook-progress-bar { height: 3px; background: rgba(238, 199, 106, 0.15); position: relative; }
         .storybook-progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold-accent), var(--warm-mauve)); width: 9%; transition: width 0.3s ease; }
         .storybook-content { background: var(--soft-blush); min-height: 400px; position: relative; overflow: hidden; }
         .storybook-page { display: none; padding: 2rem; text-align: center; }
         .storybook-page.active { display: block; animation: fadeIn 0.3s ease; }
-        .page-image img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 20px rgba(42,43,42,0.1); }
-        .storybook-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: var(--white); border-top: 1px solid rgba(213, 141, 141, 0.1); }
-        .storybook-btn { padding: 0.5rem 1.5rem; font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #666; background: transparent; border: 1px solid #ccc; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
+        .page-image img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .storybook-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: var(--white); border-top: 1px solid rgba(238, 199, 106, 0.1); }
+        .storybook-btn { padding: 0.5rem 1.5rem; font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #666; background: transparent; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
         .storybook-btn:hover:not(:disabled) { border-color: var(--gold-accent); color: var(--gold-text); }
         .storybook-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-        .storybook-counter { font-family: 'Montserrat', sans-serif; font-size: 12px; color: #888; text-transform: uppercase; letter-spacing: 0.15em; }
+        .storybook-counter { font-family: 'Montserrat', sans-serif; font-size: 12px; color: #999; text-transform: uppercase; letter-spacing: 0.15em; }
         .storybook-counter span:first-child { color: var(--gold-text); font-weight: 600; }
         .storybook-dots { display: flex; justify-content: center; gap: 0.5rem; padding: 1rem; background: var(--white); }
-        .dot { width: 8px; height: 8px; border-radius: 50%; background: #ccc; border: none; cursor: pointer; transition: all 0.2s; }
+        .dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; border: none; cursor: pointer; transition: all 0.2s; }
         .dot:hover { background: var(--warm-mauve); }
         .dot.active { background: var(--gold-accent); transform: scale(1.2); }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -93,37 +94,41 @@
             #hero > section { min-height: 50vh; flex: none; }
             #hero > section:hover, #hero > section:not(:hover) { flex-grow: 1; }
         }
-        .palette-indicator { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #2A2B2A; color: #F0EEE9; padding: 8px 20px; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; z-index: 9999; }
+        /* Palette indicator */
+        .palette-indicator { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 8px 20px; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; z-index: 9999; }
     </style>
 </head>
 
-<body class="bg-luxury-white text-charcoal overflow-x-hidden font-display">
-    <div class="palette-indicator">Palette 3: Muted Rose + Neutrals</div>
+<body class="bg-luxury-white text-[#2a2a2a] overflow-x-hidden font-display">
+    <!-- Palette Indicator -->
+    <div class="palette-indicator">Palette 1: Blush Pink + Gold</div>
 
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#F0EEE9]/90 backdrop-blur-sm border-b border-primary/10">
+    <!-- Minimal Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-primary/10">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="https://ellieandpiper.com" class="text-xs uppercase tracking-widest font-sans font-medium text-charcoal/60 hover:text-primary transition-colors">Shop</a>
+            <a href="https://ellieandpiper.com" class="text-xs uppercase tracking-widest font-sans font-medium text-gray-500 hover:text-primary transition-colors">Shop</a>
             <div class="flex flex-col items-center">
-                <h1 class="text-xl md:text-2xl font-display italic tracking-tight font-medium text-charcoal">Ellie & Piper</h1>
+                <h1 class="text-xl md:text-2xl font-display italic tracking-tight font-medium">Ellie & Piper</h1>
                 <span class="text-[7px] uppercase tracking-[0.25em] font-sans -mt-0.5 text-primary-text font-semibold">Party Boutique</span>
             </div>
-            <a href="https://www.instagram.com/ellieandpiperparty/" target="_blank" class="text-charcoal/40 hover:text-primary transition-colors">
+            <a href="https://www.instagram.com/ellieandpiperparty/" target="_blank" class="text-gray-400 hover:text-primary transition-colors">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
         </div>
     </nav>
 
+    <!-- Hero Section -->
     <main id="hero" class="relative h-screen flex flex-col md:flex-row pt-16 overflow-hidden">
-        <section id="shop" class="group relative flex-1 h-1/2 md:h-full bg-[#F0EEE9] overflow-hidden flex flex-col items-center justify-center p-8 transition-all duration-700">
+        <section id="shop" class="group relative flex-1 h-1/2 md:h-full bg-white overflow-hidden flex flex-col items-center justify-center p-8 transition-all duration-700">
             <div class="absolute inset-0 z-0">
                 <div class="parallax-zoom absolute inset-0 bg-center bg-cover" style='background-image: url("images/hero-shop.svg");'></div>
-                <div class="absolute inset-0 bg-[#F0EEE9]/10"></div>
+                <div class="absolute inset-0 bg-white/5"></div>
             </div>
             <div class="relative z-10 text-center space-y-4 max-w-sm">
-                <span class="text-xs uppercase tracking-[0.2em] font-sans font-bold text-primary-text">Bespoke Celebrations</span>
-                <h2 class="text-5xl md:text-6xl font-display italic text-charcoal">The Shop</h2>
-                <p class="text-sm font-sans text-charcoal/70 leading-relaxed mb-8">Premium party supplies for your most beautiful moments.</p>
-                <a class="inline-block px-10 py-4 bg-charcoal text-[#F0EEE9] hover:bg-charcoal/80 transition-all duration-300 font-sans text-xs uppercase tracking-widest font-bold" href="https://ellieandpiper.com">Shop Now</a>
+                <span class="text-xs uppercase tracking-[0.2em] font-sans font-bold text-primary-text drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">Bespoke Celebrations</span>
+                <h2 class="text-5xl md:text-6xl font-display italic">The Shop</h2>
+                <p class="text-sm font-sans text-gray-500 leading-relaxed mb-8">Premium party supplies for your most beautiful moments.</p>
+                <a class="inline-block px-10 py-4 bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 font-sans text-xs uppercase tracking-widest font-bold" href="https://ellieandpiper.com">Shop Now</a>
             </div>
         </section>
 
@@ -133,14 +138,15 @@
                 <div class="absolute inset-0 bg-soft-pink/5"></div>
             </div>
             <div class="relative z-10 text-center space-y-4 max-w-sm">
-                <span class="text-xs uppercase tracking-[0.2em] font-sans font-bold text-primary-text">Bespoke Styling</span>
-                <h2 class="text-5xl md:text-6xl font-display italic text-charcoal">The Studio</h2>
-                <p class="text-sm font-sans text-charcoal/70 leading-relaxed mb-8">Balloon installations and creative event design.</p>
-                <a class="inline-block px-10 py-4 bg-charcoal text-[#F0EEE9] hover:bg-charcoal/80 transition-all duration-300 font-sans text-xs uppercase tracking-widest font-bold" href="https://ellieandpiper.com/pages/contact">Inquire</a>
+                <span class="text-xs uppercase tracking-[0.2em] font-sans font-bold text-primary-text drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">Bespoke Styling</span>
+                <h2 class="text-5xl md:text-6xl font-display italic">The Studio</h2>
+                <p class="text-sm font-sans text-gray-500 leading-relaxed mb-8">Balloon installations and creative event design.</p>
+                <a class="inline-block px-10 py-4 bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 font-sans text-xs uppercase tracking-widest font-bold" href="https://ellieandpiper.com/pages/contact">Inquire</a>
             </div>
         </section>
     </main>
 
+    <!-- Transition -->
     <section class="hero-to-story-transition relative overflow-hidden">
         <div class="transition-gradient"></div>
         <div class="relative z-10 text-center py-16 md:py-20 px-6">
@@ -150,8 +156,8 @@
                     <circle cx="100" cy="15" r="4" fill="currentColor" opacity="0.5"/>
                 </svg>
             </div>
-            <p class="text-xs md:text-sm font-sans text-charcoal/50 uppercase tracking-[0.3em] mb-2">Our Story</p>
-            <h3 class="text-xl md:text-2xl lg:text-3xl font-display italic text-charcoal/80 max-w-md mx-auto leading-relaxed">The Kingdom of Every Little Moment</h3>
+            <p class="text-xs md:text-sm font-sans text-gray-400 uppercase tracking-[0.3em] mb-2">Our Story</p>
+            <h3 class="text-xl md:text-2xl lg:text-3xl font-display italic text-gray-700 max-w-md mx-auto leading-relaxed">The Kingdom of Every Little Moment</h3>
             <div class="mt-8 animate-bounce">
                 <svg class="w-5 h-5 mx-auto text-primary opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
@@ -161,10 +167,11 @@
         <div class="transition-gradient-bottom"></div>
     </section>
 
+    <!-- Storybook Section -->
     <section id="storybook" class="storybook-section relative">
         <div class="storybook-container">
             <div class="storybook-header">
-                <h2 class="text-2xl md:text-3xl font-display italic text-charcoal">Ellie & Piper</h2>
+                <h2 class="text-2xl md:text-3xl font-display italic">Ellie & Piper</h2>
                 <p class="text-[10px] uppercase tracking-[0.25em] font-sans text-primary-text font-semibold">The Kingdom of Every Little Moment</p>
             </div>
             <div class="storybook-progress-bar"><div class="storybook-progress-fill" id="progressFill"></div></div>
@@ -202,13 +209,14 @@
         </div>
     </section>
 
-    <footer class="bg-gradient-to-b from-[#F0EEE9] to-soft-pink/20 py-12 px-6">
+    <!-- Footer -->
+    <footer class="bg-gradient-to-b from-white to-soft-pink/30 py-12 px-6">
         <div class="max-w-4xl mx-auto text-center space-y-6">
             <div>
-                <h2 class="text-2xl font-display italic text-charcoal">Ellie & Piper</h2>
+                <h2 class="text-2xl font-display italic">Ellie & Piper</h2>
                 <p class="text-[9px] font-sans uppercase tracking-[0.3em] text-primary-text font-medium mt-1">Luxury Party Boutique</p>
             </div>
-            <div class="flex justify-center items-center gap-6 text-charcoal/40">
+            <div class="flex justify-center items-center gap-6 text-gray-400">
                 <a href="https://ellieandpiper.com" class="text-xs uppercase tracking-widest font-sans hover:text-primary transition-colors">Shop</a>
                 <span class="text-primary/30">|</span>
                 <a href="https://ellieandpiper.com/pages/contact" class="text-xs uppercase tracking-widest font-sans hover:text-primary transition-colors">Contact</a>
@@ -218,7 +226,7 @@
                 </a>
             </div>
             <div class="pt-4 border-t border-primary/10">
-                <p class="text-[9px] text-charcoal/40 font-sans uppercase tracking-widest">© 2026 Ellie & Piper. All Rights Reserved.</p>
+                <p class="text-[9px] text-gray-400 font-sans uppercase tracking-widest">© 2026 Ellie & Piper. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
