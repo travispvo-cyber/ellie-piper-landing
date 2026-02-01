@@ -103,11 +103,40 @@
 
     <nav class="fixed top-0 left-0 right-0 z-50 bg-[#F0EEE9]/90 backdrop-blur-sm border-b border-primary/10">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="https://ellieandpiper.com" class="text-xs uppercase tracking-widest font-sans font-medium text-charcoal/60 hover:text-primary transition-colors">Shop</a>
+            <!-- Left: Shop + Palettes Dropdown -->
+            <div class="flex items-center gap-4">
+                <a href="https://ellieandpiper.com" class="text-xs uppercase tracking-widest font-sans font-medium text-charcoal/60 hover:text-primary transition-colors">Shop</a>
+                <div class="relative palette-dropdown">
+                    <button class="text-xs uppercase tracking-widest font-sans font-medium text-charcoal/60 hover:text-primary transition-colors flex items-center gap-1" onclick="toggleNavDropdown()">
+                        Palettes
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </button>
+                    <div class="palette-dropdown-menu absolute left-0 top-full mt-2 bg-white rounded-lg shadow-xl border border-gray-100 py-2 min-w-[180px] hidden">
+                        <a href="palette-1-blush-gold.html" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors">
+                            <div class="flex gap-1"><span class="w-3 h-3 rounded-full" style="background:#d4af37"></span><span class="w-3 h-3 rounded-full" style="background:#F4B8C7"></span></div>
+                            <span class="text-[10px] uppercase tracking-wider font-sans text-gray-600">Blush + Gold</span>
+                        </a>
+                        <a href="palette-2-rosegold-cream.html" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors">
+                            <div class="flex gap-1"><span class="w-3 h-3 rounded-full" style="background:#B86B77"></span><span class="w-3 h-3 rounded-full" style="background:#EABFB9"></span></div>
+                            <span class="text-[10px] uppercase tracking-wider font-sans text-gray-600">Rose Gold</span>
+                        </a>
+                        <a href="palette-3-muted-rose.html" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors">
+                            <div class="flex gap-1"><span class="w-3 h-3 rounded-full" style="background:#D58D8D"></span><span class="w-3 h-3 rounded-full" style="background:#F4BBC9"></span></div>
+                            <span class="text-[10px] uppercase tracking-wider font-sans text-gray-600">Muted Rose</span>
+                        </a>
+                        <a href="palette-4-pink-green.html" class="flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors">
+                            <div class="flex gap-1"><span class="w-3 h-3 rounded-full" style="background:#D3B238"></span><span class="w-3 h-3 rounded-full" style="background:#6D9F71"></span></div>
+                            <span class="text-[10px] uppercase tracking-wider font-sans text-gray-600">Pink + Sage</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Center: Logo -->
             <div class="flex flex-col items-center">
                 <h1 class="text-xl md:text-2xl font-display italic tracking-tight font-medium text-charcoal">Ellie & Piper</h1>
                 <span class="text-[7px] uppercase tracking-[0.25em] font-sans -mt-0.5 text-primary-text font-semibold">Party Boutique</span>
             </div>
+            <!-- Right: Instagram -->
             <a href="https://www.instagram.com/ellieandpiperparty/" target="_blank" class="text-charcoal/40 hover:text-primary transition-colors">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
             </a>
@@ -252,6 +281,13 @@
     </div>
 
     <style>
+        /* Nav Dropdown */
+        .palette-dropdown { position: relative; }
+        .palette-dropdown-menu { opacity: 0; transform: translateY(-10px); transition: all 0.2s ease; pointer-events: none; }
+        .palette-dropdown-menu.show { opacity: 1; transform: translateY(0); pointer-events: auto; display: block !important; }
+        .palette-dropdown-menu a:hover { background: #f5f5f5; }
+
+        /* Palette Switcher (bottom-right) */
         .palette-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: var(--white); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); padding: 12px; font-family: 'Montserrat', sans-serif; }
         .palette-switcher-toggle { background: var(--gold-accent); color: white; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.3s ease; }
         .palette-switcher-toggle:hover { transform: scale(1.05); }
@@ -267,6 +303,22 @@
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Nav Dropdown Script -->
+    <script>
+        function toggleNavDropdown() {
+            const menu = document.querySelector('.palette-dropdown-menu');
+            menu.classList.toggle('show');
+        }
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            const dropdown = document.querySelector('.palette-dropdown');
+            const menu = document.querySelector('.palette-dropdown-menu');
+            if (dropdown && menu && !dropdown.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+    </script>
 
     <!-- Palette Switcher Script -->
     <script>
