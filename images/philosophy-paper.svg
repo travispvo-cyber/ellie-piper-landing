@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect fill="#fdf2f5" width="800" height="1000"/>
+  <rect fill="#d4af37" x="40" y="40" width="720" height="920" rx="10" opacity="0.08"/>
+  <text x="400" y="480" font-family="Georgia, serif" font-size="48" font-style="italic" fill="#d4af37" text-anchor="middle">Paper Goods</text>
+  <text x="400" y="550" font-family="Arial, sans-serif" font-size="20" fill="#888" text-anchor="middle">Product image</text>
+</svg>
