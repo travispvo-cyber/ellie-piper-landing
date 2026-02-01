@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ellie & Piper: The Kingdom of Every Little Moment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #d4af37;
+            --gold-text: #8a6914;  /* Darker gold for readable text */
+            --soft-pink: #f8eeef;  /* Warmer mauve-pink */
+            --warm-mauve: #ebb6b7;
+            --deep-pink: #e64cb2;
+            --text-dark: #2a2a2a;
+        }
+
+        body {
+            font-family: 'Newsreader', Georgia, serif;
+            background: linear-gradient(135deg, var(--soft-pink) 0%, #fff 50%, var(--soft-pink) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .book-container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .book-header {
+            background: linear-gradient(135deg, var(--soft-pink) 0%, #fff 100%);
+            color: var(--text-dark);
+            padding: 24px 30px;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .book-header h1 {
+            font-size: 32px;
+            font-style: italic;
+            font-weight: 500;
+            margin-bottom: 4px;
+            letter-spacing: -0.02em;
+        }
+
+        .book-header p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--gold-text);
+            font-weight: 600;
+        }
+
+        .book-content {
+            position: relative;
+            overflow: hidden;
+            background: var(--soft-pink);
+        }
+
+        .book-page {
+            display: none;
+            opacity: 0;
+            width: 100%;
+            padding: 30px;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        .book-page.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.98); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .page-image {
+            width: 100%;
+            max-width: 900px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .page-image img {
+            width: 100%;
+            height: auto;
+            max-height: 65vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .page-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-dark);
+            font-style: italic;
+            text-align: center;
+            max-width: 700px;
+            padding: 0 20px;
+        }
+
+        .book-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 30px;
+            background: white;
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .nav-button {
+            background: transparent;
+            color: var(--gold);
+            border: 2px solid var(--gold);
+            padding: 12px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: var(--gold);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-button:active {
+            transform: translateY(0);
+        }
+
+        .nav-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .nav-button:disabled:hover {
+            background: transparent;
+            color: var(--gold);
+        }
+
+        .page-counter {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .page-counter span {
+            color: var(--gold-text);
+            font-weight: 600;
+        }
+
+        /* Progress bar */
+        .progress-bar {
+            height: 3px;
+            background: rgba(212, 175, 55, 0.15);
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+
+        /* Cover page special styling */
+        .book-page.cover-page .page-image img {
+            max-height: 70vh;
+        }
+
+        .book-page.cover-page .page-text {
+            font-size: 16px;
+            color: var(--gold-text);
+            font-weight: 500;
+        }
+
+        /* Back to home link */
+        .back-link {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            color: var(--text-dark);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 1;
+            color: var(--gold);
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .book-header {
+                padding: 20px;
+            }
+
+            .book-header h1 {
+                font-size: 24px;
+            }
+
+            .book-page {
+                padding: 20px 15px;
+            }
+
+            .page-image img {
+                max-height: 50vh;
+            }
+
+            .page-text {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+
+            .nav-button {
+                padding: 10px 18px;
+                font-size: 11px;
+            }
+
+            .book-footer {
+                padding: 15px 20px;
+            }
+
+            .back-link {
+                position: static;
+                display: block;
+                text-align: center;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Back to Home</a>
+
+    <div class="book-container">
+        <div class="book-header">
+            <h1>Ellie & Piper</h1>
+            <p>The Kingdom of Every Little Moment</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill" style="width: 9.09%"></div>
+        </div>
+
+        <div class="book-content">
+            <!-- Cover -->
+            <div class="book-page cover-page active">
+                <div class="page-image">
+                    <img src="images/storybook/scene-00-cover.png" alt="The Kingdom of Every Little Moment - Cover"/>
+                </div>
+                <div class="page-text">
+                    A story of imagination, love, and creating magic from the heart.
+                </div>
+            </div>
+
+            <!-- Page 1 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-01.png" alt="Page 1"/>
+                </div>
+                <div class="page-text">
+                    Ellie and Piper were dreamers who lived in a house built on love and light. Today, they sketched plans for a grand princess ball, their heads bent together over a book of colors.
+                </div>
+            </div>
+
+            <!-- Page 2 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-02.png" alt="Page 2"/>
+                </div>
+                <div class="page-text">
+                    "To the mall!" Piper cheered, imagining aisles of silk ribbons and shimmering crowns. Ellie smiled, already reaching for her favorite sweater, ready to gather the finest supplies to make their royal dream a reality.
+                </div>
+            </div>
+
+            <!-- Page 3 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-03.png" alt="Page 3"/>
+                </div>
+                <div class="page-text">
+                    Suddenly, the sky turned a bruised violet, and a great rumble of thunder shook the floorboards. The house went dark as the power vanished, leaving their plans for the mall on the other side of an impassable storm.
+                </div>
+            </div>
+
+            <!-- Page 4 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-04.png" alt="Page 4"/>
+                </div>
+                <div class="page-text">
+                    They sat in the quiet, feeling small as the rain tapped rhythmically against the glass. Without the mall and all its treasures, their beautiful ball seemed like just a dream now—impossible and far away.
+                </div>
+            </div>
+
+            <!-- Page 5 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-05.png" alt="Page 5"/>
+                </div>
+                <div class="page-text">
+                    Then, Ellie spotted a bag of party supplies tucked away in the corner and felt a spark of inspiration flicker inside her. Sometimes, she realized, the best magic comes not from what you planned—but from what you find when plans fall apart.
+                </div>
+            </div>
+
+            <!-- Page 6 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-06.png" alt="Page 6"/>
+                </div>
+                <div class="page-text">
+                    Piper caught the spark, finding the "fancy" plates they saved only for the most special days. She found tissue paper tucked in a drawer—soft, delicate, and in every color of the rainbow. Their kingdom was already taking shape.
+                </div>
+            </div>
+
+            <!-- Page 7 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-07.png" alt="Page 7"/>
+                </div>
+                <div class="page-text">
+                    Together, they became architects of wonder, stringing a massive, billowing balloon garland across the living room. They hung ribbons that swayed like dancers and arranged their fancy plates on a makeshift table draped in the softest tissue paper.
+                </div>
+            </div>
+
+            <!-- Page 8 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-08.png" alt="Page 8"/>
+                </div>
+                <div class="page-text">
+                    In their homemade kingdom, the sisters began to dance, their laughter filling the space where the lightning had left only silence. Every balloon was a promise: joy didn't need permission. It needed only imagination—and two hearts brave enough to create it.
+                </div>
+            </div>
+
+            <!-- Page 9 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-09.png" alt="Page 9"/>
+                </div>
+                <div class="page-text">
+                    In the shadows of the hallway, Mama Tina paused to breathe in the peace of the home. Her heart swelled watching her daughters transform darkness into light, loss into celebration. This was the real kingdom—not of things, but of moments.
+                </div>
+            </div>
+
+            <!-- Page 10 -->
+            <div class="book-page">
+                <div class="page-image">
+                    <img src="images/storybook/scene-10.png" alt="Page 10"/>
+                </div>
+                <div class="page-text">
+                    Nestled safely in Mama's arms was Baby Nellie, their miracle rainbow baby. In the heart of their home—where storms come and go, but love stays—Ellie and Piper had created something that would last forever: the kingdom of every little moment.
+                </div>
+            </div>
+        </div>
+
+        <div class="book-footer">
+            <button class="nav-button" id="prevBtn" onclick="changePage(-1)">← Previous</button>
+            <div class="page-counter">
+                Page <span id="currentPage">1</span> of <span id="totalPages">11</span>
+            </div>
+            <button class="nav-button" id="nextBtn" onclick="changePage(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 11;
+
+        function showPage(page) {
+            const pages = document.querySelectorAll('.book-page');
+            pages.forEach(p => p.classList.remove('active'));
+
+            if (page >= 1 && page <= totalPages) {
+                pages[page - 1].classList.add('active');
+                currentPage = page;
+                document.getElementById('currentPage').textContent = currentPage;
+
+                // Update progress bar
+                const progress = (currentPage / totalPages) * 100;
+                document.getElementById('progressFill').style.width = progress + '%';
+
+                // Update button states
+                document.getElementById('prevBtn').disabled = currentPage === 1;
+                document.getElementById('nextBtn').disabled = currentPage === totalPages;
+            }
+        }
+
+        function changePage(direction) {
+            showPage(currentPage + direction);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changePage(-1);
+            if (e.key === 'ArrowRight') changePage(1);
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.querySelector('.book-content').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.querySelector('.book-content').addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    changePage(1); // Swipe left = next
+                } else {
+                    changePage(-1); // Swipe right = previous
+                }
+            }
+        }
+
+        // Initialize
+        showPage(1);
+    </script>
+</body>
+</html>

@@ -1,6 +1,101 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
-  <rect fill="#fdf2f5" width="800" height="1000"/>
-  <rect fill="#d4af37" x="40" y="40" width="720" height="920" rx="10" opacity="0.08"/>
-  <text x="400" y="480" font-family="Georgia, serif" font-size="48" font-style="italic" fill="#d4af37" text-anchor="middle">Gift Boxes</text>
-  <text x="400" y="550" font-family="Arial, sans-serif" font-size="20" fill="#888" text-anchor="middle">Product image</text>
+  <!-- Background -->
+  <rect fill="#f8eeef" width="800" height="1000"/>
+
+  <!-- Soft texture -->
+  <defs>
+    <pattern id="dots" patternUnits="userSpaceOnUse" width="30" height="30">
+      <circle cx="15" cy="15" r="1" fill="#ebb6b7" opacity="0.2"/>
+    </pattern>
+    <linearGradient id="ribbonGold" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c4a030"/>
+      <stop offset="50%" style="stop-color:#d4af37"/>
+      <stop offset="100%" style="stop-color:#c4a030"/>
+    </linearGradient>
+  </defs>
+  <rect fill="url(#dots)" width="800" height="1000"/>
+
+  <!-- Large gift box (back) -->
+  <g transform="translate(420, 320)">
+    <!-- Box body -->
+    <rect x="0" y="40" width="200" height="180" rx="4" fill="#fff"/>
+    <rect x="0" y="40" width="200" height="180" rx="4" fill="#ebb6b7" opacity="0.15"/>
+    <!-- Box lid -->
+    <rect x="-10" y="0" width="220" height="50" rx="4" fill="#fff"/>
+    <rect x="-10" y="0" width="220" height="50" rx="4" fill="#ebb6b7" opacity="0.2"/>
+    <!-- Ribbon vertical -->
+    <rect x="90" y="0" width="20" height="220" fill="url(#ribbonGold)"/>
+    <!-- Ribbon horizontal -->
+    <rect x="-10" y="15" width="220" height="18" fill="url(#ribbonGold)"/>
+    <!-- Bow -->
+    <ellipse cx="100" cy="0" rx="35" ry="20" fill="#d4af37"/>
+    <ellipse cx="100" cy="0" rx="25" ry="14" fill="#e8c865"/>
+    <ellipse cx="60" cy="-15" rx="28" ry="18" fill="#d4af37" transform="rotate(-30, 60, -15)"/>
+    <ellipse cx="140" cy="-15" rx="28" ry="18" fill="#d4af37" transform="rotate(30, 140, -15)"/>
+    <circle cx="100" cy="0" r="8" fill="#c4a030"/>
+  </g>
+
+  <!-- Medium gift box (front left) -->
+  <g transform="translate(150, 420)">
+    <!-- Box body -->
+    <rect x="0" y="30" width="160" height="150" rx="4" fill="#fff"/>
+    <!-- Box lid -->
+    <rect x="-8" y="0" width="176" height="38" rx="4" fill="#fff"/>
+    <rect x="-8" y="0" width="176" height="38" rx="4" fill="#d4af37" opacity="0.1"/>
+    <!-- Ribbon vertical -->
+    <rect x="70" y="0" width="16" height="180" fill="#ebb6b7"/>
+    <!-- Ribbon horizontal -->
+    <rect x="-8" y="10" width="176" height="14" fill="#ebb6b7"/>
+    <!-- Bow -->
+    <ellipse cx="78" cy="0" rx="28" ry="16" fill="#ebb6b7"/>
+    <ellipse cx="78" cy="0" rx="20" ry="11" fill="#f0c8c8"/>
+    <ellipse cx="48" cy="-10" rx="22" ry="14" fill="#ebb6b7" transform="rotate(-25, 48, -10)"/>
+    <ellipse cx="108" cy="-10" rx="22" ry="14" fill="#ebb6b7" transform="rotate(25, 108, -10)"/>
+    <circle cx="78" cy="0" r="6" fill="#d4a0a2"/>
+  </g>
+
+  <!-- Small gift box (front right) -->
+  <g transform="translate(480, 520)">
+    <!-- Box body -->
+    <rect x="0" y="25" width="120" height="100" rx="4" fill="#fff"/>
+    <rect x="0" y="25" width="120" height="100" rx="4" fill="#f8e8e0" opacity="0.5"/>
+    <!-- Box lid -->
+    <rect x="-6" y="0" width="132" height="30" rx="4" fill="#fff"/>
+    <!-- Ribbon vertical -->
+    <rect x="52" y="0" width="14" height="125" fill="url(#ribbonGold)"/>
+    <!-- Ribbon horizontal -->
+    <rect x="-6" y="8" width="132" height="12" fill="url(#ribbonGold)"/>
+    <!-- Simple bow -->
+    <ellipse cx="59" cy="0" rx="20" ry="12" fill="#d4af37"/>
+    <ellipse cx="40" cy="-8" rx="16" ry="10" fill="#d4af37" transform="rotate(-20, 40, -8)"/>
+    <ellipse cx="78" cy="-8" rx="16" ry="10" fill="#d4af37" transform="rotate(20, 78, -8)"/>
+    <circle cx="59" cy="0" r="5" fill="#c4a030"/>
+  </g>
+
+  <!-- Greeting cards -->
+  <g transform="translate(280, 650) rotate(-8)">
+    <rect x="0" y="0" width="80" height="100" rx="2" fill="#fff" stroke="#e8e0e0" stroke-width="1"/>
+    <rect x="15" y="20" width="50" height="4" fill="#ebb6b7" opacity="0.5"/>
+    <rect x="15" y="30" width="40" height="3" fill="#d4af37" opacity="0.3"/>
+    <rect x="15" y="40" width="45" height="3" fill="#ebb6b7" opacity="0.3"/>
+  </g>
+  <g transform="translate(340, 660) rotate(5)">
+    <rect x="0" y="0" width="70" height="90" rx="2" fill="#fff" stroke="#e8e0e0" stroke-width="1"/>
+    <circle cx="35" cy="35" r="15" fill="#ebb6b7" opacity="0.3"/>
+    <circle cx="35" cy="35" r="8" fill="#d4af37" opacity="0.3"/>
+  </g>
+
+  <!-- Ribbon curls decoration -->
+  <path d="M200 380 Q180 350, 210 340 Q240 330, 220 360" stroke="#d4af37" stroke-width="2" fill="none" opacity="0.5"/>
+  <path d="M580 480 Q600 450, 570 440 Q540 430, 560 460" stroke="#ebb6b7" stroke-width="2" fill="none" opacity="0.6"/>
+
+  <!-- Confetti -->
+  <circle cx="180" cy="350" r="4" fill="#d4af37" opacity="0.4"/>
+  <circle cx="620" cy="380" r="3" fill="#ebb6b7" opacity="0.5"/>
+  <circle cx="350" cy="300" r="4" fill="#d4af37" opacity="0.3"/>
+  <circle cx="500" cy="700" r="3" fill="#ebb6b7" opacity="0.4"/>
+
+  <!-- Decorative gold accent -->
+  <rect x="200" y="850" width="400" height="2" fill="#d4af37" opacity="0.3"/>
+  <circle cx="400" cy="851" r="6" fill="#d4af37" opacity="0.4"/>
 </svg>

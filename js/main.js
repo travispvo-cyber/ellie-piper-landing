@@ -1,6 +1,6 @@
 /**
  * Ellie & Piper - Main JavaScript
- * Handles scroll-triggered storybook animation using GSAP ScrollTrigger
+ * Handles click-based storybook navigation and page animations
  */
 
 (function() {
@@ -13,143 +13,142 @@
     const isMobile = () => window.innerWidth < 768;
 
     /**
-     * Initialize GSAP plugins
+     * Initialize GSAP plugins (for hero effects only now)
      */
     function initGSAP() {
-        gsap.registerPlugin(ScrollTrigger);
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+        }
     }
 
     /**
-     * Initialize the horizontal scroll storybook animation
+     * Initialize the click-based storybook navigation
      */
-    function initStorybookAnimation() {
-        // Skip horizontal scroll on mobile or if user prefers reduced motion
-        if (isMobile() || prefersReducedMotion) {
-            initMobileStorybook();
-            return;
+    function initStorybookNavigation() {
+        const pages = document.querySelectorAll('.storybook-page');
+        const dots = document.querySelectorAll('.storybook-dots .dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentPageEl = document.getElementById('currentPage');
+        const totalPagesEl = document.getElementById('totalPages');
+        const progressFill = document.getElementById('progressFill');
+        const storybookContent = document.getElementById('storybookContent');
+
+        if (!pages.length || !prevBtn || !nextBtn) return;
+
+        let currentPage = 0;
+        const totalPages = pages.length;
+
+        // Set total pages
+        if (totalPagesEl) {
+            totalPagesEl.textContent = totalPages;
         }
 
-        const section = document.querySelector('.storybook-section');
-        const container = document.querySelector('.storybook-container');
-        const track = document.querySelector('.storybook-track');
-        const scenes = document.querySelectorAll('.storybook-scene');
-        const dots = document.querySelectorAll('.progress-dot');
+        /**
+         * Show specific page
+         */
+        function showPage(pageIndex) {
+            if (pageIndex < 0 || pageIndex >= totalPages) return;
 
-        if (!section || !track || scenes.length === 0) return;
-
-        // Calculate the total scroll distance
-        const totalScenes = scenes.length;
-        const scrollDistance = track.scrollWidth - window.innerWidth;
-
-        // Create the horizontal scroll animation
-        const scrollTween = gsap.to(track, {
-            x: -scrollDistance,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: section,
-                start: 'top top',
-                end: () => `+=${scrollDistance}`,
-                scrub: 1,
-                pin: container,
-                anticipatePin: 1,
-                invalidateOnRefresh: true,
-                onUpdate: (self) => {
-                    updateActiveScene(self.progress, scenes, dots);
+            // Update pages
+            pages.forEach((page, index) => {
+                if (index === pageIndex) {
+                    page.classList.add('active');
+                } else {
+                    page.classList.remove('active');
                 }
-            }
-        });
-
-        // Add parallax effect to scene images
-        scenes.forEach((scene, index) => {
-            const image = scene.querySelector('.scene-image');
-            if (image) {
-                gsap.to(image, {
-                    x: -50,
-                    ease: 'none',
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top top',
-                        end: () => `+=${scrollDistance}`,
-                        scrub: 1
-                    }
-                });
-            }
-        });
-
-        // Handle dot clicks for navigation
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                const targetProgress = index / (totalScenes - 1);
-                const targetScroll = section.offsetTop + (scrollDistance * targetProgress);
-
-                gsap.to(window, {
-                    scrollTo: { y: targetScroll, autoKill: false },
-                    duration: 1,
-                    ease: 'power2.inOut'
-                });
             });
-        });
-    }
 
-    /**
-     * Update active scene based on scroll progress
-     */
-    function updateActiveScene(progress, scenes, dots) {
-        const totalScenes = scenes.length;
-        const sceneIndex = Math.min(
-            Math.floor(progress * totalScenes),
-            totalScenes - 1
-        );
+            // Update dots
+            dots.forEach((dot, index) => {
+                if (index === pageIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
 
-        scenes.forEach((scene, index) => {
-            if (index === sceneIndex) {
-                scene.classList.add('active');
-            } else {
-                scene.classList.remove('active');
+            // Update current page number
+            currentPage = pageIndex;
+            if (currentPageEl) {
+                currentPageEl.textContent = currentPage + 1;
             }
-        });
 
-        dots.forEach((dot, index) => {
-            if (index === sceneIndex) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
+            // Update progress bar
+            if (progressFill) {
+                const progress = ((currentPage + 1) / totalPages) * 100;
+                progressFill.style.width = progress + '%';
             }
-        });
-    }
 
-    /**
-     * Initialize mobile storybook (fade-in on scroll)
-     */
-    function initMobileStorybook() {
-        const scenes = document.querySelectorAll('.storybook-scene');
-
-        if (prefersReducedMotion) {
-            // Just show all scenes without animation
-            scenes.forEach(scene => scene.classList.add('active'));
-            return;
+            // Update button states
+            prevBtn.disabled = currentPage === 0;
+            nextBtn.disabled = currentPage === totalPages - 1;
         }
 
-        // Fade in scenes as they enter viewport
-        scenes.forEach((scene) => {
-            gsap.fromTo(scene,
-                {
-                    opacity: 0,
-                    y: 30
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: scene,
-                        start: 'top 80%',
-                        toggleActions: 'play none none reverse'
+        /**
+         * Navigate to next/previous page
+         */
+        function changePage(direction) {
+            showPage(currentPage + direction);
+        }
+
+        // Button click handlers
+        prevBtn.addEventListener('click', () => changePage(-1));
+        nextBtn.addEventListener('click', () => changePage(1));
+
+        // Dot click handlers
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => showPage(index));
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            // Only respond if storybook is in viewport
+            const section = document.getElementById('storybook');
+            if (!section) return;
+
+            const rect = section.getBoundingClientRect();
+            const inViewport = rect.top < window.innerHeight && rect.bottom > 0;
+
+            if (inViewport) {
+                if (e.key === 'ArrowLeft') {
+                    changePage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changePage(1);
+                }
+            }
+        });
+
+        // Touch/swipe support
+        if (storybookContent) {
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            storybookContent.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            storybookContent.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        changePage(1); // Swipe left = next
+                    } else {
+                        changePage(-1); // Swipe right = previous
                     }
                 }
-            );
-        });
+            }
+        }
+
+        // Initialize first page
+        showPage(0);
     }
 
     /**
@@ -157,6 +156,7 @@
      */
     function initHeroEffects() {
         if (isMobile() || prefersReducedMotion) return;
+        if (typeof gsap === 'undefined') return;
 
         const heroImages = document.querySelectorAll('#hero .parallax-zoom');
 
@@ -179,6 +179,7 @@
      */
     function initPhilosophyAnimations() {
         if (prefersReducedMotion) return;
+        if (typeof gsap === 'undefined') return;
 
         const cards = document.querySelectorAll('.group.cursor-pointer');
 
@@ -208,8 +209,9 @@
      * Handle window resize
      */
     function handleResize() {
-        let resizeTimer;
+        if (typeof ScrollTrigger === 'undefined') return;
 
+        let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
@@ -223,16 +225,10 @@
      */
     function init() {
         initGSAP();
-        initStorybookAnimation();
+        initStorybookNavigation();
         initHeroEffects();
         initPhilosophyAnimations();
         handleResize();
-
-        // Set first scene as active on load
-        const firstScene = document.querySelector('.storybook-scene');
-        if (firstScene) {
-            firstScene.classList.add('active');
-        }
     }
 
     // Run on DOM ready

@@ -1,6 +1,70 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
-  <rect fill="#fdf2f5" width="800" height="1000"/>
-  <rect fill="#d4af37" x="40" y="40" width="720" height="920" rx="10" opacity="0.08"/>
-  <text x="400" y="480" font-family="Georgia, serif" font-size="48" font-style="italic" fill="#d4af37" text-anchor="middle">Balloons</text>
-  <text x="400" y="550" font-family="Arial, sans-serif" font-size="20" fill="#888" text-anchor="middle">Service image</text>
+  <!-- Background -->
+  <rect fill="#f8eeef" width="800" height="1000"/>
+
+  <!-- Soft gradient overlay -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff;stop-opacity:0.5"/>
+      <stop offset="100%" style="stop-color:#f8eeef;stop-opacity:0"/>
+    </linearGradient>
+    <radialGradient id="balloonShine">
+      <stop offset="0%" style="stop-color:#fff;stop-opacity:0.6"/>
+      <stop offset="50%" style="stop-color:#fff;stop-opacity:0"/>
+    </radialGradient>
+  </defs>
+  <rect fill="url(#bgGrad)" width="800" height="1000"/>
+
+  <!-- Balloon garland arrangement -->
+
+  <!-- Large blush balloon -->
+  <ellipse cx="280" cy="350" rx="110" ry="130" fill="#ebb6b7"/>
+  <ellipse cx="250" cy="310" rx="30" ry="35" fill="url(#balloonShine)"/>
+  <path d="M280 480 L270 500 L290 500 Z" fill="#d4a0a2"/>
+
+  <!-- Large cream/white balloon -->
+  <ellipse cx="450" cy="300" rx="120" ry="140" fill="#fff" stroke="#f0e8e8" stroke-width="1"/>
+  <ellipse cx="415" cy="255" rx="35" ry="40" fill="url(#balloonShine)"/>
+  <path d="M450 440 L440 460 L460 460 Z" fill="#e8e0e0"/>
+
+  <!-- Rose gold balloon -->
+  <ellipse cx="580" cy="380" rx="100" ry="115" fill="#e8c4b8"/>
+  <ellipse cx="550" cy="340" rx="28" ry="32" fill="url(#balloonShine)"/>
+  <path d="M580 495 L570 515 L590 515 Z" fill="#d4b0a5"/>
+
+  <!-- Medium gold balloon -->
+  <ellipse cx="350" cy="480" rx="85" ry="100" fill="#d4af37" opacity="0.7"/>
+  <ellipse cx="325" cy="445" rx="22" ry="26" fill="url(#balloonShine)"/>
+  <path d="M350 580 L342 598 L358 598 Z" fill="#c4a030"/>
+
+  <!-- Small accent balloons -->
+  <ellipse cx="200" cy="480" rx="60" ry="70" fill="#fff" stroke="#f0e8e8" stroke-width="1"/>
+  <ellipse cx="180" cy="455" rx="16" ry="18" fill="url(#balloonShine)"/>
+
+  <ellipse cx="520" cy="520" rx="55" ry="65" fill="#ebb6b7" opacity="0.8"/>
+  <ellipse cx="502" cy="498" rx="14" ry="16" fill="url(#balloonShine)"/>
+
+  <ellipse cx="650" cy="280" rx="50" ry="58" fill="#f8e8e0"/>
+  <ellipse cx="635" cy="260" rx="12" ry="14" fill="url(#balloonShine)"/>
+
+  <!-- Tiny accent balloons -->
+  <ellipse cx="170" cy="350" rx="35" ry="42" fill="#d4af37" opacity="0.5"/>
+  <ellipse cx="680" cy="450" rx="40" ry="48" fill="#ebb6b7" opacity="0.6"/>
+  <ellipse cx="400" cy="220" rx="45" ry="52" fill="#f0e0d8"/>
+
+  <!-- Confetti/sparkle accents -->
+  <circle cx="300" cy="600" r="4" fill="#d4af37" opacity="0.5"/>
+  <circle cx="480" cy="650" r="3" fill="#ebb6b7" opacity="0.6"/>
+  <circle cx="250" cy="250" r="5" fill="#d4af37" opacity="0.4"/>
+  <circle cx="600" cy="580" r="4" fill="#d4af37" opacity="0.5"/>
+  <circle cx="150" cy="420" r="3" fill="#ebb6b7" opacity="0.5"/>
+
+  <!-- Ribbon strings (subtle) -->
+  <path d="M280 500 Q260 600, 280 750" stroke="#d4a0a2" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M450 460 Q470 580, 440 750" stroke="#e0d8d8" stroke-width="1" fill="none" opacity="0.4"/>
+  <path d="M350 598 Q330 680, 360 750" stroke="#c4a030" stroke-width="1" fill="none" opacity="0.4"/>
+
+  <!-- Decorative gold accent -->
+  <rect x="200" y="850" width="400" height="2" fill="#d4af37" opacity="0.3"/>
+  <circle cx="400" cy="851" r="6" fill="#d4af37" opacity="0.4"/>
 </svg>
