@@ -228,8 +228,78 @@
         </div>
     </footer>
 
+    <!-- Palette Switcher -->
+    <div class="palette-switcher" id="paletteSwitcher">
+        <button class="palette-switcher-toggle" onclick="togglePaletteSwitcher()">🎨 Palette</button>
+        <div class="palette-options">
+            <button class="palette-option" data-palette="blush-gold" onclick="setPalette('blush-gold')">
+                <div class="palette-swatches"><span style="background: #d4af37;"></span><span style="background: #F4B8C7;"></span><span style="background: #FFF8FA;"></span></div>
+                <span class="palette-name">Blush + Gold</span>
+            </button>
+            <button class="palette-option" data-palette="rosegold-cream" onclick="setPalette('rosegold-cream')">
+                <div class="palette-swatches"><span style="background: #B86B77;"></span><span style="background: #EABFB9;"></span><span style="background: #F0DBC1;"></span></div>
+                <span class="palette-name">Rose Gold + Cream</span>
+            </button>
+            <button class="palette-option active" data-palette="muted-rose" onclick="setPalette('muted-rose')">
+                <div class="palette-swatches"><span style="background: #D58D8D;"></span><span style="background: #F4BBC9;"></span><span style="background: #F0EEE9;"></span></div>
+                <span class="palette-name">Muted Rose</span>
+            </button>
+            <button class="palette-option" data-palette="pink-sage" onclick="setPalette('pink-sage')">
+                <div class="palette-swatches"><span style="background: #D3B238;"></span><span style="background: #EC839E;"></span><span style="background: #6D9F71;"></span></div>
+                <span class="palette-name">Pink + Sage</span>
+            </button>
+        </div>
+    </div>
+
+    <style>
+        .palette-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 1000; background: var(--white); border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.15); padding: 12px; font-family: 'Montserrat', sans-serif; }
+        .palette-switcher-toggle { background: var(--gold-accent); color: white; border: none; padding: 10px 16px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.3s ease; }
+        .palette-switcher-toggle:hover { transform: scale(1.05); }
+        .palette-options { display: none; flex-direction: column; gap: 8px; margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.1); }
+        .palette-switcher.open .palette-options { display: flex; }
+        .palette-option { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border: 2px solid transparent; border-radius: 8px; cursor: pointer; transition: all 0.2s ease; background: transparent; text-align: left; }
+        .palette-option:hover { background: var(--soft-blush); }
+        .palette-option.active { border-color: var(--gold-accent); background: var(--soft-blush); }
+        .palette-swatches { display: flex; gap: 3px; }
+        .palette-swatches span { width: 16px; height: 16px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
+        .palette-name { font-size: 10px; font-weight: 500; color: var(--text-dark); text-transform: uppercase; letter-spacing: 0.05em; }
+    </style>
+
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- Palette Switcher Script -->
+    <script>
+        const palettes = {
+            'blush-gold': { gold: '#d4af37', goldText: '#8a6914', blush: '#FFF8FA', mauve: '#F4B8C7', text: '#2D2926', white: '#ffffff' },
+            'rosegold-cream': { gold: '#B86B77', goldText: '#8B4D57', blush: '#FFE8E5', mauve: '#EABFB9', text: '#2D2926', white: '#ffffff' },
+            'muted-rose': { gold: '#D58D8D', goldText: '#A06565', blush: '#F0EEE9', mauve: '#F4BBC9', text: '#2A2B2A', white: '#FEFEFE' },
+            'pink-sage': { gold: '#D3B238', goldText: '#337357', blush: '#F4B8C7', mauve: '#EC839E', text: '#2A2B2A', white: '#ffffff' }
+        };
+
+        function togglePaletteSwitcher() {
+            document.getElementById('paletteSwitcher').classList.toggle('open');
+        }
+
+        function setPalette(palette) {
+            const p = palettes[palette];
+            const root = document.documentElement;
+            root.style.setProperty('--gold-accent', p.gold);
+            root.style.setProperty('--gold-text', p.goldText);
+            root.style.setProperty('--soft-blush', p.blush);
+            root.style.setProperty('--warm-mauve', p.mauve);
+            root.style.setProperty('--text-dark', p.text);
+            root.style.setProperty('--white', p.white);
+            document.querySelectorAll('.palette-option').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`[data-palette="${palette}"]`).classList.add('active');
+            localStorage.setItem('ellie-piper-palette', palette);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('ellie-piper-palette');
+            if (saved && palettes[saved]) setPalette(saved);
+        });
+    </script>
 
     <!-- Storybook Swiper Initialization -->
     <script>

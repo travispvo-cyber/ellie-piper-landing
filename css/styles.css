@@ -1,13 +1,69 @@
 /* Ellie & Piper - Custom Styles */
 
-:root {
+/* ================================
+   Color Palette System
+   ================================ */
+
+/* Palette 1: Blush Pink + Gold (Default - Luxury Party) */
+:root,
+[data-palette="blush-gold"] {
     --gold-accent: #d4af37;
-    --gold-text: #8a6914;  /* Darker gold for readable text - 4.8:1 contrast on white */
-    --soft-blush: #f8eeef;  /* Warmer mauve-pink aligned with official brand */
-    --warm-mauve: #ebb6b7;  /* Accent mauve from ellieandpiper.com */
-    --text-dark: #2a2a2a;
-    --charcoal: #636363;    /* Official brand text gray */
+    --gold-text: #8a6914;
+    --soft-blush: #FFF8FA;
+    --warm-mauve: #F4B8C7;
+    --rose-accent: #E8A4B8;
+    --text-dark: #2D2926;
+    --charcoal: #636363;
     --white: #ffffff;
+    --cream: #FAF7F2;
+    --cta-gold: #EEC76A;
+    --deep-gold: #CFA33D;
+}
+
+/* Palette 2: Rose Gold + Cream (Sophisticated Warm) */
+[data-palette="rosegold-cream"] {
+    --gold-accent: #B86B77;
+    --gold-text: #8B4D57;
+    --soft-blush: #FFE8E5;
+    --warm-mauve: #EABFB9;
+    --rose-accent: #F6CFCA;
+    --text-dark: #2D2926;
+    --charcoal: #5A5A5A;
+    --white: #ffffff;
+    --cream: #F0DBC1;
+    --cta-gold: #B86B77;
+    --deep-gold: #9A5A63;
+}
+
+/* Palette 3: Muted Rose + Neutrals (2025/2026 Trend) */
+[data-palette="muted-rose"] {
+    --gold-accent: #D58D8D;
+    --gold-text: #A06565;
+    --soft-blush: #F0EEE9;
+    --warm-mauve: #F4BBC9;
+    --rose-accent: #EFC9D0;
+    --text-dark: #2A2B2A;
+    --charcoal: #555555;
+    --white: #FEFEFE;
+    --cream: #F5F3EE;
+    --cta-gold: #D58D8D;
+    --deep-gold: #B87070;
+}
+
+/* Palette 4: Pink + Gold + Sage (Fresh Elegant) */
+[data-palette="pink-sage"] {
+    --gold-accent: #D3B238;
+    --gold-text: #337357;
+    --soft-blush: #F4B8C7;
+    --warm-mauve: #EC839E;
+    --rose-accent: #F4B8C7;
+    --text-dark: #2A2B2A;
+    --charcoal: #4A4A4A;
+    --white: #ffffff;
+    --cream: #F5F3EE;
+    --cta-gold: #D3B238;
+    --deep-gold: #337357;
+    --sage-green: #6D9F71;
 }
 
 /* Base Styles */
@@ -462,5 +518,109 @@ body {
 
     .storybook-page .page-image img {
         max-height: 70vh;
+    }
+}
+
+/* ================================
+   Palette Switcher
+   ================================ */
+
+.palette-switcher {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.palette-switcher-toggle {
+    background: var(--gold-accent);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.3s ease;
+}
+
+.palette-switcher-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+}
+
+.palette-options {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.palette-switcher.open .palette-options {
+    display: flex;
+}
+
+.palette-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 12px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: transparent;
+    text-align: left;
+}
+
+.palette-option:hover {
+    background: var(--soft-blush);
+}
+
+.palette-option.active {
+    border-color: var(--gold-accent);
+    background: var(--soft-blush);
+}
+
+.palette-swatches {
+    display: flex;
+    gap: 3px;
+}
+
+.palette-swatches span {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+.palette-name {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Mobile palette switcher */
+@media (max-width: 767px) {
+    .palette-switcher {
+        bottom: 10px;
+        right: 10px;
+        padding: 10px;
+    }
+
+    .palette-switcher-toggle {
+        padding: 8px 12px;
+        font-size: 10px;
     }
 }

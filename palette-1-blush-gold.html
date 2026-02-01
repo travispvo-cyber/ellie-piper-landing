@@ -5,27 +5,21 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Palette 1: Blush Pink + Gold | Ellie & Piper</title>
 
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
-    <!-- Tailwind Config - PALETTE 1: Blush Pink + Gold -->
     <script>
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#EEC76A",        // Warm Gold
-                        "primary-text": "#CFA33D",   // Deep Gold
-                        "soft-pink": "#FACDDE",      // Pale Pink
-                        "warm-mauve": "#FDB8D2",     // Light Rose
+                        "primary": "#EEC76A",
+                        "primary-text": "#CFA33D",
+                        "soft-pink": "#FACDDE",
+                        "warm-mauve": "#FDB8D2",
                         "charcoal": "#636363",
                         "luxury-white": "#ffffff",
-                        "accent": "#FFA3C5",         // Soft Blush
                     },
                     fontFamily: {
                         "display": ["Newsreader", "serif"],
@@ -36,48 +30,37 @@
         }
     </script>
 
-    <!-- Custom Styles with Palette Override -->
     <style>
         :root {
             --gold-accent: #EEC76A;
             --gold-text: #CFA33D;
             --soft-blush: #FACDDE;
             --warm-mauve: #FDB8D2;
-            --text-dark: #2a2a2a;
             --charcoal: #636363;
             --white: #ffffff;
         }
-        body { font-family: 'Newsreader', serif; }
+        body { font-family: 'Newsreader', serif; background: #fff; }
         .parallax-zoom { transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
         .group:hover .parallax-zoom { transform: scale(1.05); }
         #hero { display: flex; min-height: calc(100vh - 4rem); position: relative; }
         #hero > section { flex: 1; transition: flex-grow 0.4s ease; }
         #hero > section:hover { flex-grow: 1.4; }
         #hero > section:not(:hover) { flex-grow: 0.8; }
-        #hero::after {
-            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 150px;
-            background: linear-gradient(to bottom, transparent, rgba(250,205,222,0.5) 50%, #FACDDE);
-            pointer-events: none; z-index: 5;
-        }
-        .hero-to-story-transition {
-            background: linear-gradient(180deg, var(--white) 0%, var(--soft-blush) 40%, var(--soft-blush) 60%, var(--white) 100%);
-        }
+        #hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 150px; background: linear-gradient(to bottom, transparent, rgba(250,205,222,0.5) 50%, #FACDDE); pointer-events: none; z-index: 5; }
+        .hero-to-story-transition { background: linear-gradient(180deg, var(--white) 0%, var(--soft-blush) 40%, var(--soft-blush) 60%, var(--white) 100%); }
         .transition-gradient { position: absolute; top: 0; left: 0; right: 0; height: 80px; background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, transparent 100%); pointer-events: none; }
         .transition-gradient-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 80px; background: linear-gradient(0deg, rgba(255,255,255,0.9) 0%, transparent 100%); pointer-events: none; }
         .flourish-container { display: flex; justify-content: center; align-items: center; }
         .flourish-svg { width: 180px; height: 30px; color: var(--gold-accent); }
-        .storybook-section {
-            background: linear-gradient(180deg, var(--white) 0%, var(--soft-blush) 15%, var(--soft-blush) 85%, var(--white) 100%);
-            padding: 2rem 1rem 4rem; position: relative; z-index: 10; margin-top: -40px;
-        }
-        .storybook-container { max-width: 1000px; margin: 0 auto; background: var(--white); border-radius: 16px; box-shadow: 0 8px 60px rgba(0, 0, 0, 0.08); overflow: hidden; border: 1px solid rgba(200, 180, 180, 0.2); }
+        .storybook-section { background: linear-gradient(180deg, var(--white) 0%, var(--soft-blush) 15%, var(--soft-blush) 85%, var(--white) 100%); padding: 2rem 1rem 4rem; position: relative; z-index: 10; margin-top: -40px; }
+        .storybook-container { max-width: 1000px; margin: 0 auto; background: var(--white); border-radius: 16px; box-shadow: 0 8px 60px rgba(0, 0, 0, 0.08); overflow: hidden; border: 1px solid rgba(238, 199, 106, 0.2); }
         .storybook-header { background: linear-gradient(135deg, var(--soft-blush) 0%, var(--white) 100%); padding: 1.5rem 2rem; text-align: center; border-bottom: 1px solid rgba(238, 199, 106, 0.2); }
         .storybook-progress-bar { height: 3px; background: rgba(238, 199, 106, 0.15); position: relative; }
         .storybook-progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold-accent), var(--warm-mauve)); width: 9%; transition: width 0.3s ease; }
         .storybook-content { background: var(--soft-blush); min-height: 400px; position: relative; overflow: hidden; }
-        .storybook-page { display: none; padding: 2rem; text-align: center; }
-        .storybook-page.active { display: block; animation: fadeIn 0.3s ease; }
-        .page-image img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .storybook-content .swiper { width: 100%; height: 100%; }
+        .storybook-content .swiper-slide { display: flex; align-items: center; justify-content: center; padding: 2rem; }
+        .page-image img { max-width: 100%; max-height: 60vh; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); user-select: none; -webkit-user-drag: none; }
         .storybook-nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: var(--white); border-top: 1px solid rgba(238, 199, 106, 0.1); }
         .storybook-btn { padding: 0.5rem 1.5rem; font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #666; background: transparent; border: 1px solid #ddd; border-radius: 4px; cursor: pointer; transition: all 0.2s; }
         .storybook-btn:hover:not(:disabled) { border-color: var(--gold-accent); color: var(--gold-text); }
@@ -88,22 +71,14 @@
         .dot { width: 8px; height: 8px; border-radius: 50%; background: #ddd; border: none; cursor: pointer; transition: all 0.2s; }
         .dot:hover { background: var(--warm-mauve); }
         .dot.active { background: var(--gold-accent); transform: scale(1.2); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 767px) {
-            #hero { flex-direction: column; min-height: auto; }
-            #hero > section { min-height: 50vh; flex: none; }
-            #hero > section:hover, #hero > section:not(:hover) { flex-grow: 1; }
-        }
-        /* Palette indicator */
-        .palette-indicator { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.8); color: white; padding: 8px 20px; border-radius: 20px; font-family: 'Montserrat', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; z-index: 9999; }
+        @media (max-width: 767px) { #hero { flex-direction: column; min-height: auto; } #hero > section { min-height: 50vh; flex: none; } #hero > section:hover, #hero > section:not(:hover) { flex-grow: 1; } }
+        .palette-indicator { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.85); color: white; padding: 10px 20px; border-radius: 25px; font-family: 'Montserrat', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; z-index: 9999; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
     </style>
 </head>
 
 <body class="bg-luxury-white text-[#2a2a2a] overflow-x-hidden font-display">
-    <!-- Palette Indicator -->
-    <div class="palette-indicator">Palette 1: Blush Pink + Gold</div>
+    <div class="palette-indicator">1. Blush Pink + Gold</div>
 
-    <!-- Minimal Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-primary/10">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <a href="https://ellieandpiper.com" class="text-xs uppercase tracking-widest font-sans font-medium text-gray-500 hover:text-primary transition-colors">Shop</a>
@@ -117,28 +92,24 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <main id="hero" class="relative h-screen flex flex-col md:flex-row pt-16 overflow-hidden">
         <section id="shop" class="group relative flex-1 h-1/2 md:h-full bg-white overflow-hidden flex flex-col items-center justify-center p-8 transition-all duration-700">
             <div class="absolute inset-0 z-0">
                 <div class="parallax-zoom absolute inset-0 bg-center bg-cover" style='background-image: url("images/hero-shop.svg");'></div>
-                <div class="absolute inset-0 bg-white/5"></div>
             </div>
             <div class="relative z-10 text-center space-y-4 max-w-sm">
-                <span class="text-xs uppercase tracking-[0.2em] font-sans font-bold text-primary-text drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">Bespoke Celebrations</span>
+                <span class="text-xs uppercase tracking-[0.2em] font-sans font-bold text-primary-text">Bespoke Celebrations</span>
                 <h2 class="text-5xl md:text-6xl font-display italic">The Shop</h2>
                 <p class="text-sm font-sans text-gray-500 leading-relaxed mb-8">Premium party supplies for your most beautiful moments.</p>
                 <a class="inline-block px-10 py-4 bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 font-sans text-xs uppercase tracking-widest font-bold" href="https://ellieandpiper.com">Shop Now</a>
             </div>
         </section>
-
         <section id="studio" class="group relative flex-1 h-1/2 md:h-full bg-soft-pink overflow-hidden flex flex-col items-center justify-center p-8 transition-all duration-700">
             <div class="absolute inset-0 z-0">
                 <div class="parallax-zoom absolute inset-0 bg-center bg-cover" style='background-image: url("images/hero-balloons.svg");'></div>
-                <div class="absolute inset-0 bg-soft-pink/5"></div>
             </div>
             <div class="relative z-10 text-center space-y-4 max-w-sm">
-                <span class="text-xs uppercase tracking-[0.2em] font-sans font-bold text-primary-text drop-shadow-[0_1px_2px_rgba(255,255,255,0.8)]">Bespoke Styling</span>
+                <span class="text-xs uppercase tracking-[0.2em] font-sans font-bold text-primary-text">Bespoke Styling</span>
                 <h2 class="text-5xl md:text-6xl font-display italic">The Studio</h2>
                 <p class="text-sm font-sans text-gray-500 leading-relaxed mb-8">Balloon installations and creative event design.</p>
                 <a class="inline-block px-10 py-4 bg-gray-900 text-white hover:bg-gray-800 transition-all duration-300 font-sans text-xs uppercase tracking-widest font-bold" href="https://ellieandpiper.com/pages/contact">Inquire</a>
@@ -146,28 +117,18 @@
         </section>
     </main>
 
-    <!-- Transition -->
     <section class="hero-to-story-transition relative overflow-hidden">
         <div class="transition-gradient"></div>
         <div class="relative z-10 text-center py-16 md:py-20 px-6">
             <div class="flourish-container mb-6">
-                <svg class="flourish-svg" viewBox="0 0 200 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 15 Q25 5, 50 15 T100 15 T150 15 T200 15" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/>
-                    <circle cx="100" cy="15" r="4" fill="currentColor" opacity="0.5"/>
-                </svg>
+                <svg class="flourish-svg" viewBox="0 0 200 30" fill="none"><path d="M0 15 Q25 5, 50 15 T100 15 T150 15 T200 15" stroke="currentColor" stroke-width="1" fill="none" opacity="0.3"/><circle cx="100" cy="15" r="4" fill="currentColor" opacity="0.5"/></svg>
             </div>
             <p class="text-xs md:text-sm font-sans text-gray-400 uppercase tracking-[0.3em] mb-2">Our Story</p>
             <h3 class="text-xl md:text-2xl lg:text-3xl font-display italic text-gray-700 max-w-md mx-auto leading-relaxed">The Kingdom of Every Little Moment</h3>
-            <div class="mt-8 animate-bounce">
-                <svg class="w-5 h-5 mx-auto text-primary opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-                </svg>
-            </div>
         </div>
         <div class="transition-gradient-bottom"></div>
     </section>
 
-    <!-- Storybook Section -->
     <section id="storybook" class="storybook-section relative">
         <div class="storybook-container">
             <div class="storybook-header">
@@ -176,17 +137,21 @@
             </div>
             <div class="storybook-progress-bar"><div class="storybook-progress-fill" id="progressFill"></div></div>
             <div class="storybook-content" id="storybookContent">
-                <div class="storybook-page active" data-page="0"><div class="page-image"><img src="images/storybook/scene-00-cover.png" alt="Cover"/></div></div>
-                <div class="storybook-page" data-page="1"><div class="page-image"><img src="images/storybook/scene-01.png" alt="Page 1"/></div></div>
-                <div class="storybook-page" data-page="2"><div class="page-image"><img src="images/storybook/scene-02.png" alt="Page 2"/></div></div>
-                <div class="storybook-page" data-page="3"><div class="page-image"><img src="images/storybook/scene-03.png" alt="Page 3"/></div></div>
-                <div class="storybook-page" data-page="4"><div class="page-image"><img src="images/storybook/scene-04.png" alt="Page 4"/></div></div>
-                <div class="storybook-page" data-page="5"><div class="page-image"><img src="images/storybook/scene-05.png" alt="Page 5"/></div></div>
-                <div class="storybook-page" data-page="6"><div class="page-image"><img src="images/storybook/scene-06.png" alt="Page 6"/></div></div>
-                <div class="storybook-page" data-page="7"><div class="page-image"><img src="images/storybook/scene-07.png" alt="Page 7"/></div></div>
-                <div class="storybook-page" data-page="8"><div class="page-image"><img src="images/storybook/scene-08.png" alt="Page 8"/></div></div>
-                <div class="storybook-page" data-page="9"><div class="page-image"><img src="images/storybook/scene-09.png" alt="Page 9"/></div></div>
-                <div class="storybook-page" data-page="10"><div class="page-image"><img src="images/storybook/scene-10.png" alt="Page 10"/></div></div>
+                <div class="swiper" id="storybookSwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-00-cover.png" alt="Cover" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-01.png" alt="Page 1" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-02.png" alt="Page 2" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-03.png" alt="Page 3" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-04.png" alt="Page 4" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-05.png" alt="Page 5" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-06.png" alt="Page 6" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-07.png" alt="Page 7" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-08.png" alt="Page 8" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-09.png" alt="Page 9" draggable="false"/></div></div>
+                        <div class="swiper-slide"><div class="page-image"><img src="images/storybook/scene-10.png" alt="Page 10" draggable="false"/></div></div>
+                    </div>
+                </div>
             </div>
             <div class="storybook-nav">
                 <button class="storybook-btn" id="prevBtn" disabled><span class="hidden md:inline">Previous</span><span class="md:hidden">&larr;</span></button>
@@ -194,22 +159,11 @@
                 <button class="storybook-btn" id="nextBtn"><span class="hidden md:inline">Next</span><span class="md:hidden">&rarr;</span></button>
             </div>
             <div class="storybook-dots">
-                <button class="dot active" data-page="0" aria-label="Cover"></button>
-                <button class="dot" data-page="1" aria-label="Page 1"></button>
-                <button class="dot" data-page="2" aria-label="Page 2"></button>
-                <button class="dot" data-page="3" aria-label="Page 3"></button>
-                <button class="dot" data-page="4" aria-label="Page 4"></button>
-                <button class="dot" data-page="5" aria-label="Page 5"></button>
-                <button class="dot" data-page="6" aria-label="Page 6"></button>
-                <button class="dot" data-page="7" aria-label="Page 7"></button>
-                <button class="dot" data-page="8" aria-label="Page 8"></button>
-                <button class="dot" data-page="9" aria-label="Page 9"></button>
-                <button class="dot" data-page="10" aria-label="Page 10"></button>
+                <button class="dot active" data-page="0"></button><button class="dot" data-page="1"></button><button class="dot" data-page="2"></button><button class="dot" data-page="3"></button><button class="dot" data-page="4"></button><button class="dot" data-page="5"></button><button class="dot" data-page="6"></button><button class="dot" data-page="7"></button><button class="dot" data-page="8"></button><button class="dot" data-page="9"></button><button class="dot" data-page="10"></button>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="bg-gradient-to-b from-white to-soft-pink/30 py-12 px-6">
         <div class="max-w-4xl mx-auto text-center space-y-6">
             <div>
@@ -220,17 +174,33 @@
                 <a href="https://ellieandpiper.com" class="text-xs uppercase tracking-widest font-sans hover:text-primary transition-colors">Shop</a>
                 <span class="text-primary/30">|</span>
                 <a href="https://ellieandpiper.com/pages/contact" class="text-xs uppercase tracking-widest font-sans hover:text-primary transition-colors">Contact</a>
-                <span class="text-primary/30">|</span>
-                <a href="https://www.instagram.com/ellieandpiperparty/" target="_blank" class="hover:text-primary transition-colors">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                </a>
             </div>
-            <div class="pt-4 border-t border-primary/10">
-                <p class="text-[9px] text-gray-400 font-sans uppercase tracking-widest">© 2026 Ellie & Piper. All Rights Reserved.</p>
-            </div>
+            <p class="text-[9px] text-gray-400 font-sans uppercase tracking-widest pt-4 border-t border-primary/10">© 2026 Ellie & Piper</p>
         </div>
     </footer>
 
-    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const totalSlides = 11;
+            const progressFill = document.getElementById('progressFill');
+            const currentPageEl = document.getElementById('currentPage');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dots = document.querySelectorAll('.storybook-dots .dot');
+            const swiper = new Swiper('#storybookSwiper', { slidesPerView: 1, speed: 400, grabCursor: true, keyboard: { enabled: true }, on: { slideChange: function() { updateUI(this.activeIndex); } } });
+            function updateUI(index) {
+                progressFill.style.width = ((index + 1) / totalSlides) * 100 + '%';
+                currentPageEl.textContent = index + 1;
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === totalSlides - 1;
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+            }
+            prevBtn.addEventListener('click', () => swiper.slidePrev());
+            nextBtn.addEventListener('click', () => swiper.slideNext());
+            dots.forEach((dot, index) => dot.addEventListener('click', () => swiper.slideTo(index)));
+            updateUI(0);
+        });
+    </script>
 </body>
 </html>

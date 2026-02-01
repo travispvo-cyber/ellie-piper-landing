@@ -19,12 +19,16 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#d4af37",
-                        "primary-text": "#8a6914",
-                        "soft-pink": "#f8eeef",
-                        "warm-mauve": "#ebb6b7",
-                        "charcoal": "#636363",
-                        "luxury-white": "#ffffff",
+                        "primary": "var(--gold-accent)",
+                        "primary-text": "var(--gold-text)",
+                        "soft-pink": "var(--soft-blush)",
+                        "warm-mauve": "var(--warm-mauve)",
+                        "rose-accent": "var(--rose-accent)",
+                        "charcoal": "var(--charcoal)",
+                        "luxury-white": "var(--white)",
+                        "cream": "var(--cream)",
+                        "cta-gold": "var(--cta-gold)",
+                        "deep-gold": "var(--deep-gold)",
                     },
                     fontFamily: {
                         "display": ["Newsreader", "serif"],
@@ -267,7 +271,76 @@
         </div>
     </footer>
 
+    <!-- Palette Switcher -->
+    <div class="palette-switcher" id="paletteSwitcher">
+        <button class="palette-switcher-toggle" onclick="togglePaletteSwitcher()">
+            🎨 Palette
+        </button>
+        <div class="palette-options">
+            <button class="palette-option active" data-palette="blush-gold" onclick="setPalette('blush-gold')">
+                <div class="palette-swatches">
+                    <span style="background: #d4af37;"></span>
+                    <span style="background: #F4B8C7;"></span>
+                    <span style="background: #FFF8FA;"></span>
+                </div>
+                <span class="palette-name">Blush + Gold</span>
+            </button>
+            <button class="palette-option" data-palette="rosegold-cream" onclick="setPalette('rosegold-cream')">
+                <div class="palette-swatches">
+                    <span style="background: #B86B77;"></span>
+                    <span style="background: #EABFB9;"></span>
+                    <span style="background: #F0DBC1;"></span>
+                </div>
+                <span class="palette-name">Rose Gold + Cream</span>
+            </button>
+            <button class="palette-option" data-palette="muted-rose" onclick="setPalette('muted-rose')">
+                <div class="palette-swatches">
+                    <span style="background: #D58D8D;"></span>
+                    <span style="background: #F4BBC9;"></span>
+                    <span style="background: #F0EEE9;"></span>
+                </div>
+                <span class="palette-name">Muted Rose</span>
+            </button>
+            <button class="palette-option" data-palette="pink-sage" onclick="setPalette('pink-sage')">
+                <div class="palette-swatches">
+                    <span style="background: #D3B238;"></span>
+                    <span style="background: #EC839E;"></span>
+                    <span style="background: #6D9F71;"></span>
+                </div>
+                <span class="palette-name">Pink + Sage</span>
+            </button>
+        </div>
+    </div>
+
     <!-- Main Script -->
     <script src="js/main.js"></script>
+
+    <!-- Palette Switcher Script -->
+    <script>
+        function togglePaletteSwitcher() {
+            document.getElementById('paletteSwitcher').classList.toggle('open');
+        }
+
+        function setPalette(palette) {
+            document.documentElement.setAttribute('data-palette', palette);
+
+            // Update active state
+            document.querySelectorAll('.palette-option').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-palette="${palette}"]`).classList.add('active');
+
+            // Save preference
+            localStorage.setItem('ellie-piper-palette', palette);
+        }
+
+        // Load saved palette on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedPalette = localStorage.getItem('ellie-piper-palette');
+            if (savedPalette) {
+                setPalette(savedPalette);
+            }
+        });
+    </script>
 </body>
 </html>
